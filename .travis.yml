@@ -1,0 +1,14 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+env:
+- CI=true
+deploy:
+  provider: heroku
+  api_key:
+    secure: eQ3dHMwx0DDYnHs9iDIQ6dQ9qjwURS0NZ994nKOhkjuFqUGWsoAeIKOvTtP9YcRbwCnoh5HUc0B6DNAIP2pDJXeVKZAqV9T8PWHg8OYZiml/zUotfiuiRMSJ2pzXT9Y8Bh7VJW0tNCsfgl05QZPpWT17on0J7F6iJibnl6GreOHVa9ZUEVws6zp2fp/L0WpRnz79sCE05bWO2GDR10dkAGsway8mMhrPwkxGtObSZVyOVW9pc8vwS+xs2XG+OrUsRQBLEewsUuZ4qCvOAqzfOPsQIpi5oMtAZEQ5wb5TsHjurdHIXn/JZMzayl3ZObB9n4YTOtNBDwhi7NYktSzDHRuchmc0aId2QNFnxXKkyhqE1ML8ScoVhMXVpS003UYyND8pBxrD1iWIFtdjh216dAjYLrj5JMZNLlqHb9/1v6iAcZd0DWYucknqwCA9uw/1fWcOA2ceMsyUL8+YVEpc8Kf61HnVAyLwfJoRtaZvHWV26u9R3J6LAXmjeiyPH8cmAXx1WCIMPIpDnpVRC1OXPPQMOKHJyDCz/LUQRvmpCrJ6TQD/ac10B6bP9RSPh1QwZxHiIYPiGBusS8cVqkeW/XQkMr+5Myw8VsKpu6U894zEZukajF4uBrIiE2W4mgRE+iEDoB0u5SdFAGb06rsdF+/JZDE+aIPtElTP+r3Uevw=
+  app: vibrant-madame-35719
+  on:
+    repo: RodrigoSantelices/HotColdTest
