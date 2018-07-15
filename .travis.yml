@@ -5,6 +5,7 @@ cache:
   - node_modules
 env:
 - CI=true
+
 deploy:
   provider: heroku
   api_key:
