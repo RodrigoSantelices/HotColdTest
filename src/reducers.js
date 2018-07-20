@@ -7,7 +7,7 @@ const initialState ={
         correctAnswer: Math.round(Math.random() * 100) + 1
     }
 
-    export const constReducer = (state=initialState, action) =>{
+    export const gameMaker = (state=initialState, action) =>{
         if(action.type === GUESS){
             
         }
@@ -17,4 +17,5 @@ const initialState ={
         else if(action.type === HELP){
 
         }
+        return state;
     }

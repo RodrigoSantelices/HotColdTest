@@ -4,6 +4,8 @@ import Header from './header';
 import GuessSection from './guess-section';
 import StatusSection from './status-section';
 import InfoSection from './info-section';
+import {connect} from 'react-redux';
+import {newGame} from '../actions';
 
 export default class Game extends React.Component {
  
