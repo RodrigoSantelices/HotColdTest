@@ -6,16 +6,7 @@ import StatusSection from './status-section';
 import InfoSection from './info-section';
 
 export default class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.round(Math.random() * 100) + 1
-    };
-  }
-
+ 
   restartGame() {
     this.setState({
       guesses: [],
@@ -83,7 +74,7 @@ export default class Game extends React.Component {
     return (
       <div>
         <Header
-          onRestartGame={() => this.restartGame()}
+          onRestartGame={() => this.props.dispatch(newGame())}
           onGenerateAuralUpdate={() => this.generateAuralUpdate()}
         />
         <main role="main">

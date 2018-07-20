@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import InfoSection from './info-section';
+import GuessSection from '../guess-section';
 
-describe('<InfoSection />', () => {
+describe('<GuessSection />', () => {
     it('Renders without crashing', ()=> {
-        shallow(<InfoSection />);
+        shallow(<GuessSection />);
     })
 })
