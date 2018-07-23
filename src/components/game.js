@@ -5,72 +5,32 @@ import GuessSection from './guess-section';
 import StatusSection from './status-section';
 import InfoSection from './info-section';
 import {connect} from 'react-redux';
-import {newGame} from '../actions';
+import {newGame, help, guess} from '../actions';
 
-export default class Game extends React.Component {
+
+export class Game extends React.Component {
  
   restartGame() {
-    this.setState({
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.floor(Math.random() * 100) + 1
-    });
+  
+    this.props.dispatch(newGame())
   }
 
-  makeGuess(guess) {
-    guess = parseInt(guess, 10);
-    if (isNaN(guess)) {
-      this.setState({ feedback: 'Please enter a valid number' });
-      return;
-    }
-
-    const difference = Math.abs(guess - this.state.correctAnswer);
-
-    let feedback;
-    if (difference >= 50) {
-      feedback = 'You\'re Ice Cold...';
-    } else if (difference >= 30) {
-      feedback = 'You\'re Cold...';
-    } else if (difference >= 10) {
-      feedback = 'You\'re Warm.';
-    } else if (difference >= 1) {
-      feedback = 'You\'re Hot!';
-    } else {
-      feedback = 'You got it!';
-    }
-
-    this.setState({
-      feedback,
-      guesses: [...this.state.guesses, guess]
-    });
-
+  makeGuess(number) {
+  
+    this.props.dispatch(guess(number))
     // We typically wouldn't touch the DOM directly like this in React
     // but this is the best way to update the title of the page,
     // which is good for giving screen-reader users
     // instant information about the app.
-    document.title = feedback ? `${feedback} | Hot or Cold` : 'Hot or Cold';
+    document.title = this.props.feedback ? `${this.props.feedback} | Hot or Cold` : 'Hot or Cold';
   }
 
   generateAuralUpdate() {
-    const { guesses, feedback } = this.state;
-
-    // If there's not exactly 1 guess, we want to
-    // pluralize the nouns in this aural update.
-    const pluralize = guesses.length !== 1;
-
-    let  auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
-
-    if (guesses.length > 0) {
-      auralStatus += ` ${pluralize ? 'In order of most- to least-recent, they are' : 'It was'}: ${guesses.reverse().join(', ')}`;
-    }
-
-
-    this.setState({ auralStatus });
+    this.props.dispatch(help())
   }
 
   render() {
-    const { feedback, guesses, auralStatus } = this.state;
+    const { feedback, guesses, auralStatus } = this.props;
     const guessCount = guesses.length;
 
     return (
@@ -94,3 +54,11 @@ export default class Game extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state =>({
+  feedback: state.feedback,
+  guesses: state.guesses,
+  auralStatus: state.auralstatus
+})
+
+export default connect(mapStateToProps)(Game)
